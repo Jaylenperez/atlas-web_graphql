@@ -13,19 +13,21 @@ const TaskType = new GraphQLObjectType({
   }
 });
 
-// Root Query (For testing, return a dummy task)
+// Root Query
 const RootQuery = new GraphQLObjectType({
   name: 'RootQueryType',
   fields: {
     task: {
       type: TaskType,
+      args: { id: { type: GraphQLString } }, // Expecting an "id" argument
       resolve(parent, args) {
-        return {
-          id: '1',
-          title: 'Sample Task',
-          weight: 5,
-          description: 'This is a sample task'
-        };
+        // Mock data for now (we'll replace this with a database in a later task)
+        const tasks = [
+          { id: '1', title: 'GraphQL Setup', weight: 5, description: 'Setting up GraphQL API' },
+          { id: '2', title: 'Schema Design', weight: 3, description: 'Designing GraphQL schema' }
+        ];
+        
+        return tasks.find(task => task.id === args.id);
       }
     }
   }
