@@ -4,9 +4,10 @@ const schema = require('./schema/schema');
 
 const app = express();
 
+// GraphQL Middleware
 app.use('/graphql', graphqlHTTP({
   schema,
-  graphiql: true, // Enable GraphiQL UI
+  graphiql: true, // Enables GraphiQL in the browser for testing
 }));
 
 app.listen(4000, () => {

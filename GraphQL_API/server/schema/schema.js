@@ -1,4 +1,5 @@
 const graphql = require('graphql');
+
 const { GraphQLObjectType, GraphQLString, GraphQLInt, GraphQLSchema } = graphql;
 
 // Define TaskType
@@ -12,15 +13,15 @@ const TaskType = new GraphQLObjectType({
   },
 });
 
-// Root Query
+// Root Query Type
 const RootQuery = new GraphQLObjectType({
   name: 'RootQueryType',
   fields: {
     task: {
       type: TaskType,
-      args: { id: { type: GraphQLString } },
+      args: { id: { type: GraphQLString } }, // Expecting an 'id' argument
       resolve(parent, args) {
-        // Dummy data (replace with DB later)
+        // Placeholder: This should be replaced with a database query
         return {
           id: args.id,
           title: 'Sample Task',
